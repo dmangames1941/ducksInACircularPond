@@ -45,7 +45,7 @@ def windowUpdater(root,totalDucks,iterations,angle,window2,DataLabel):
         root.after(1000,windowUpdater,root,totalDucks,iterations,angle,window2,DataLabel)
     else:
         root.destroy()
-        o.output(totalDucks, angle, iterations, totalSucess, (totalSucess/currentIteration))
+        o.output(totalDucks, angle, iterations, totalSucess, (totalSucess/iterations))
 def labelMaker(totalDucks,angle,iterationsCurrent,iterationsTotal,percentageSucess,DataLabel):
     labelString = "Total Duck: "+ str(totalDucks)+",  Angle: "+ str(angle)+", Iterations: "+str(iterationsCurrent)+" Of " +str(iterationsTotal) + ",\n Number of Successes: "+ str(totalSucess) + ", Relative Frequency of Successes: "+str(percentageSucess)
     return labelString
