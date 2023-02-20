@@ -18,6 +18,8 @@ def giveNewDucksCoords(r):
   randomangle = random.random() * math.pi*2
   x = math.cos(randomangle)*r
   y = math.sin(randomangle)*r
+  if (int(x)==0):
+    x = 1
   return [int(x),int(y)]
 def relativeAngleForDuck(x,y,r):
     angle = math.atan(int(y)/int(x))

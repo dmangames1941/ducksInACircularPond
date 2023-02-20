@@ -41,10 +41,8 @@ def windowUpdater(root,totalDucks,iterations,angle,window2,DataLabel):
     DrawCircle(window2)
     if currentIteration <= iterations:
         currentIteration = 1+currentIteration
-    else:
-        root.destroy()
 def labelMaker(totalDucks,angle,iterationsCurrent,iterationsTotal,percentageSucess,DataLabel):
-    labelString = "Total Duck: "+ str(totalDucks)+",  Angle: "+ str(angle)+", Iterations: "+str(iterationsCurrent)+" Of " +str(iterationsTotal) +", Percentage Sucess rate: "+str(percentageSucess)
+    labelString = "Total Duck: "+ str(totalDucks)+",  Angle: "+ str(angle)+", Iterations: "+str(iterationsCurrent)+" Of " +str(iterationsTotal) + ",\n Number of Successes: "+ str(totalSucess) + ", Relative Frequency of Successes: "+str(percentageSucess)
     return labelString
 def drawpoint(window2,x,y):
     python_green = "#476042"
