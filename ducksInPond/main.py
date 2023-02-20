@@ -7,10 +7,11 @@ def submit():
   numDucks = int(ducks_input.get())
   numTrials = int(trials_input.get())
   sectorAngle = int(sector_input.get())
-  graph.graph(numDucks,numTrials,sectorAngle)
   root.destroy()
+  graph.graph(numDucks,numTrials,sectorAngle)
+  
 root = tk.Tk()
-window = tk.Canvas(    root,width=520,height=560)
+window = tk.Canvas(root,width=520,height=560)
 
 root.title("Ducks In A Circular Pond Simulation")
 root.geometry("520x600")

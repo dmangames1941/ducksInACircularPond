@@ -1,5 +1,6 @@
 import tkinter as tk
 import Simulation as sim
+import Output as o
 
 labelString = ""
 
@@ -18,17 +19,16 @@ def graph(totalDucks,iterations,angle):
     DrawCircle(window2)    
     DataLabel = tk.Label(root2, text = labelString)
     windowUpdater(root2, totalDucks,iterations, angle, window2, DataLabel)
-    submit_button = tk.Button(window2, text="Next",  command=lambda:[windowUpdater(root2,totalDucks,iterations,angle,window2,DataLabel)])
+    submit_button = tk.Button(window2,  command=lambda:[windowUpdater(root2,totalDucks,iterations,angle,window2,DataLabel)])
     DataLabel.pack(side="bottom")
     submit_button.pack(side="bottom")
+    root2.mainloop()
 
 
 def windowUpdater(root,totalDucks,iterations,angle,window2,DataLabel):
     global totalSucess
     global currentIteration
     clearGraph(window2)
-    print(totalSucess)
-    print(currentIteration)
     sim1 = sim.Simulation(totalDucks,angle)
     for i in range(len(sim1.getDuckList())):
         xDuck = sim1.getDuckList()[i].getX()
@@ -39,10 +39,13 @@ def windowUpdater(root,totalDucks,iterations,angle,window2,DataLabel):
     totalSucess = totalSucess +sim1.getTotalSucess()
     DataLabel.config(text= labelMaker(totalDucks,angle,currentIteration,iterations,(totalSucess/currentIteration),DataLabel))
     DrawCircle(window2)
+    
     if currentIteration <= iterations:
         currentIteration = 1+currentIteration
+        root.after(1000,windowUpdater,root,totalDucks,iterations,angle,window2,DataLabel)
     else:
         root.destroy()
+        o.output(totalDucks, angle, iterations, totalSucess, (totalSucess/currentIteration))
 def labelMaker(totalDucks,angle,iterationsCurrent,iterationsTotal,percentageSucess,DataLabel):
     labelString = "Total Duck: "+ str(totalDucks)+",  Angle: "+ str(angle)+", Iterations: "+str(iterationsCurrent)+" Of " +str(iterationsTotal) + ",\n Number of Successes: "+ str(totalSucess) + ", Relative Frequency of Successes: "+str(percentageSucess)
     return labelString
